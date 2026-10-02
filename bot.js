@@ -1,19 +1,21 @@
 const mineflayer = require('mineflayer');
 const http = require('http');
 
-// 1. Render 웹 서비스용 간단한 HTTP 서버 (포트 바인딩 에러 방지용)
+// Render 웹 서비스 포트 바인딩 요구사항 충족
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('AFK Bot is running!\n');
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 server.listen(PORT, () => {
   console.log(`HTTP server is listening on port ${PORT}`);
 });
 
-// 2. 마인크래프트 AFK 봇 로직
+// 마인크래프트 AFK 봇 로직
 function createBot() {
+  console.log('서버에 접속을 시도합니다...');
+  
   const bot = mineflayer.createBot({
     host: 'yoonho1104.aternos.me',
     port: 12532,
@@ -41,4 +43,5 @@ function createBot() {
   });
 }
 
+// 이 부분이 있어야 봇 생성 함수가 실행됩니다!
 createBot();
